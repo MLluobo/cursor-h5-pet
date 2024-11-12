@@ -1,0 +1,197 @@
+// 变量定义
+$primary-color: #1989fa;
+$text-color: #323233;
+$border-color: #ebedf0;
+$background-color: #f7f8fa;
+
+// 主题色变量
+:root {
+    // 主色调
+    --primary-gradient-start: #ff9bb3;
+    --primary-gradient-end: #ffbfd0;
+    --primary-icon: #ff8fab;
+
+    // 文字颜色
+    --text-regular: #333333;
+    --text-secondary: #999999;
+
+    // 背景色
+    --bg-white: #ffffff;
+    --bg-gray: #f7f8fa;
+}
+
+// 重置默认样式
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    font-size: 37.5px;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Helvetica Neue",
+        Helvetica,
+        Segoe UI,
+        Arial,
+        Roboto,
+        "PingFang SC",
+        "miui",
+        "Hiragino Sans GB",
+        "Microsoft Yahei",
+        sans-serif;
+    color: $text-color;
+    background-color: $background-color;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+// 移除默认样式
+a {
+    text-decoration: none;
+    color: inherit;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+input,
+button,
+textarea {
+    border: none;
+    outline: none;
+    background: none;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+
+// 通用工具类
+.clearfix {
+    &::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+// 文本工具类
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@mixin multi-ellipsis($lines) {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $lines;
+    overflow: hidden;
+}
+
+.multi-ellipsis-2 {
+    @include multi-ellipsis(2);
+}
+
+.multi-ellipsis-3 {
+    @include multi-ellipsis(3);
+}
+
+// flex布局工具类
+.flex {
+    display: flex;
+
+    &-column {
+        flex-direction: column;
+    }
+
+    &-wrap {
+        flex-wrap: wrap;
+    }
+
+    &-center {
+        justify-content: center;
+        align-items: center;
+    }
+
+    &-between {
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &-around {
+        justify-content: space-around;
+        align-items: center;
+    }
+}
+
+// 安全区适配
+.safe-area-bottom {
+    padding-bottom: constant(safe-area-inset-bottom);
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+// 1px 边框
+.hairline {
+    position: relative;
+
+    &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 1px;
+        background-color: $border-color;
+        transform: scaleY(0.5);
+    }
+}
+
+// 页面过渡动画
+.page-enter-active,
+.page-leave-active {
+    transition: opacity 0.3s ease;
+}
+
+.page-enter-from,
+.page-leave-to {
+    opacity: 0;
+}
+
+// 禁止选择文本
+.no-select {
+    user-select: none;
+}
+
+// 隐藏滚动条但保持可滚动
+.scroll-hidden {
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
